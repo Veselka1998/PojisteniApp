@@ -1,0 +1,55 @@
+﻿@model PojisteniApp.Models.Insurance
+
+@{
+    ViewData["Title"] = "Pojištění detail";
+}
+
+<h2 style="margin-block: 2rem">
+    <strong>Detail pojištění</strong>
+</h2>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Pojištění
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Předmět pojištění
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InsuranceObject)
+        </dd>
+        <dt class = "col-sm-2">
+            Částka
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price) Kč
+        </dd>
+        <dt class = "col-sm-2">
+            Platnost od
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Platnost do
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Pojištěnec
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Policyholder.FirstName)
+            @Html.DisplayFor(model => model.Policyholder.LastName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@Model?.Id">Upravit</a> 
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.Id">Smazat</a>
+</div>

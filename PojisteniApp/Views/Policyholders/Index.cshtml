@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PojisteniApp.Models.Policyholder>
+
+@{
+    ViewData["Title"] = "Pojištěnci";
+}
+
+<h3>Pojištěnci</h3>
+<div style="text-align: center">
+    <a class="btn btn-primary" asp-action="Create">Nový pojištěnec</a>
+</div>
+
+<div class="container my-4">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pojištěnec</th>
+                    <th>Bydliště</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <strong>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </strong>
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StreetAddress),
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Smazat</a>
+                            <a class="btn btn-sm btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Upravit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

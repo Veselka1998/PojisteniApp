@@ -1,0 +1,67 @@
+﻿@model PojisteniApp.Models.Policyholder
+
+@{
+    ViewData["Title"] = "Smazat pojištěnce";
+}
+
+<h2 style="margin-block: 2rem">
+    Opravdu chceš smazat pojištěnce
+    <strong>
+        @Html.DisplayFor(model => model.FirstName)
+        @Html.DisplayFor(model => model.LastName)?
+    </strong>
+</h2>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Jméno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            Příjmení
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            Telefonní číslo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class = "col-sm-2">
+            Ulice a číslo popisné
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            Město
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class = "col-sm-2">
+            PSČ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div style="margin-top: 1rem;">
+            <input type="submit" value="Smazat" class="btn btn-danger" />
+        </div>
+    </form>
+</div>

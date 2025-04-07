@@ -1,0 +1,68 @@
+﻿@model PojisteniApp.Models.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Pojištěnec detail";
+}
+
+<div class="container my-4">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-4 text-center text-md-start">
+            <img class="photo" src="~/Picture/person.png" alt="Person">
+        </div>
+        <div class="col-12 col-md-4 text-center text-md-start">
+            <h3>
+                @Html.DisplayFor(model => model.Policyholder.FirstName)
+                @Html.DisplayFor(model => model.Policyholder.LastName)
+            </h3>
+            <p>@Html.DisplayFor(model => model.Policyholder.StreetAddress)</p>
+            <p>@Html.DisplayFor(model => model.Policyholder.City)</p>
+            <p>@Html.DisplayFor(model => model.Policyholder.PostalCode)</p>
+        </div>
+
+        <div class="col-12 col-md-4 text-center text-md-start">
+            <p>@Html.DisplayFor(model => model.Policyholder.Email)</p>
+            <p>@Html.DisplayFor(model => model.Policyholder.Phone)</p>
+        </div>
+    </div>
+</div>
+
+@if (Model.Insurances.Any())
+{
+    <div class="container my-4">
+        <h4 style="margin-top: 4rem">Sjednaná pojištění</h4>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Název pojištění</th>
+                        <th>Částka</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Insurances)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Insurances" asp-action="Details" asp-route-id="@item.Id">
+                                    <strong>@item.Name</strong>
+                                </a>
+                            </td>
+                            <td>@item.Price Kč</td>
+                            <td>
+                                <a class="btn btn-sm btn-danger" asp-controller="Insurances" asp-action="Delete" asp-route-id="@item.Id">Smazat</a>
+                                <a class="btn btn-sm btn-warning text-white" asp-controller="Insurances" asp-action="Edit" asp-route-id="@item.Id">Upravit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<div style="text-align:center">
+    <a class="btn btn-primary" asp-controller="Insurances" asp-action="Create" asp-route-id="@Model.Policyholder.Id">Přidat pojištění</a>
+    <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@Model?.Policyholder.Id">Upravit Pojištěnce</a>
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.Policyholder.Id">Smazat Pojištěnce</a>
+</div>

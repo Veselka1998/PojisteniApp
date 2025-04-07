@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PojisteniApp.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Pojištění";
+}
+
+<h3>Pojištění</h3>
+
+<div class="container my-4">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Pojištění</th>
+                    <th>Pojištěnec</th>
+                    <th>Předmět pojištění</th>
+                    <th>Částka</th>
+                    <th>Platnost od</th>
+                    <th>Platnost do</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Policyholder.FirstName)
+                            @Html.DisplayFor(modelItem => item.Policyholder.LastName)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.InsuranceObject)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price) Kč</td>
+                        <td>@Html.DisplayFor(modelItem => item.EffectiveDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ExpirationDate)</td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Smazat</a>
+                            <a class="btn btn-sm btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Upravit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
